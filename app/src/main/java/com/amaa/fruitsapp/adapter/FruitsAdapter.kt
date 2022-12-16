@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.amaa.fruitsapp.FruitsDetails
+import com.amaa.fruitsapp.FruitsListDirections
 import com.amaa.fruitsapp.R
 import com.amaa.fruitsapp.model.Fruits
 
@@ -27,14 +27,11 @@ class FruitsAdapter(private val dataset: List<Fruits>) : RecyclerView.Adapter<Fr
         holder.itemimage.setImageResource(item.item_image)
 
         holder.itemcard.setOnClickListener {
-            
-            
-            val context = holder.itemView.context
-            val intent = Intent(context, FruitsDetails :: class.java)
-            intent.putExtra("NAME" , item.item_name)
-            intent.putExtra("DESCRIPTION" , item.item_description)
-            intent.putExtra("IMAGE", item.item_image)
-            context.startActivity(intent)
+
+
+            val action = FruitsListDirections.actionFruitsListToFruitsDetails(item.item_name,item.item_description,item.item_image)
+            holder.itemView.findNavController().navigate(action)
+
 
 
         }

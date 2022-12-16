@@ -2,6 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:name="androidx.navigation.fragment.NavHostFragment"
     android:id="@+id/nav_graph"
     app:startDestination="@id/fruitsList">
 
@@ -19,6 +20,17 @@
         android:name="com.amaa.fruitsapp.FruitsDetails"
         android:label="Fruits Details"
         tools:layout="@layout/fragment_fruits_details" >
+
+        <argument
+            android:name="FruitName"
+            app:argType="string" />
+        <argument
+            android:name="FruitDescription"
+            app:argType="string" />
+        <argument
+            android:name="FruitImage"
+            app:argType="integer" />
+
 
 
 </fragment>
