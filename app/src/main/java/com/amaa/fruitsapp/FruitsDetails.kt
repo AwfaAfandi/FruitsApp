@@ -18,9 +18,11 @@ import android.widget.TextView
 class FruitsDetails : Fragment() {
 
     companion object {
+        var nameid = "FruitName"
         var itemname = "FruitName"
+        var descrptionid = "FruitDescription"
         var itemDescrption = "FruitDescription"
-        var itemimage = "FruitImage"
+        var imageid = "FruitImage"
         var itemimagepath = 0
         val SEARCH_PREFIX = "https://www.google.com/search?q="
 
@@ -51,17 +53,17 @@ class FruitsDetails : Fragment() {
         super.onViewCreated(itemView, savedInstanceState)
 
         arguments?.let {
-            itemname = it.getString(itemname).toString()
-            itemDescrption = it.getString(itemDescrption).toString()
-            itemimagepath = it.getInt(itemimage)
+            itemname = it.getString(nameid).toString()
+            itemDescrption = it.getString(descrptionid).toString()
+            itemimagepath = it.getInt(imageid)
 
         }
 
-        val fruit_name: TextView = itemView.findViewById(R.id.fruit_name)
-        val fruit_Description: TextView = itemView.findViewById(R.id.fruit_Description)
-        val fruit_image : ImageView = itemView.findViewById(R.id.fruit_image)
-        val sharebutton : ImageButton = itemView.findViewById(R.id.sharebutton)
-        val searchbutton : ImageButton = itemView.findViewById(R.id.searchbutton)
+        var fruit_name: TextView = itemView.findViewById(R.id.fruit_name)
+        var fruit_Description: TextView = itemView.findViewById(R.id.fruit_Description)
+        var fruit_image : ImageView = itemView.findViewById(R.id.fruit_image)
+        var sharebutton : ImageButton = itemView.findViewById(R.id.sharebutton)
+        var searchbutton : ImageButton = itemView.findViewById(R.id.searchbutton)
 
         fruit_name.text = itemname
         fruit_Description.text = itemDescrption
@@ -75,8 +77,8 @@ class FruitsDetails : Fragment() {
 
       searchbutton.setOnClickListener {
 
-            val queryUrl: Uri = Uri.parse("${FruitsDetails.SEARCH_PREFIX}${itemname}")
-            val intent = Intent(Intent.ACTION_VIEW, queryUrl)
+          var queryUrl: Uri = Uri.parse("${FruitsDetails.SEARCH_PREFIX}${itemname}")
+          var intent = Intent(Intent.ACTION_VIEW, queryUrl)
             context?.startActivity(intent)
 
         }
