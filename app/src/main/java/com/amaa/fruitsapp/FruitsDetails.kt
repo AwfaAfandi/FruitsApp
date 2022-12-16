@@ -1,5 +1,6 @@
 package com.amaa.fruitsapp
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.BitmapFactory
 import android.net.Uri
@@ -46,6 +47,7 @@ class FruitsDetails : Fragment() {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_fruits_details, container, false)
     }
+
 
 
 
