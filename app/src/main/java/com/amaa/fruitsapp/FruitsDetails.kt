@@ -13,7 +13,7 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
-
+import java.io.File
 
 
 class FruitsDetails : Fragment() {
@@ -28,9 +28,6 @@ class FruitsDetails : Fragment() {
         val SEARCH_PREFIX = "https://www.google.com/search?q="
 
     }
-
-
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,6 +48,7 @@ class FruitsDetails : Fragment() {
 
 
 
+    @SuppressLint("SuspiciousIndentation")
     override fun onViewCreated(itemView: View, savedInstanceState: Bundle?) {
         super.onViewCreated(itemView, savedInstanceState)
 
@@ -71,9 +69,26 @@ class FruitsDetails : Fragment() {
         fruit_Description.text = itemDescrption
         fruit_image.setImageResource(itemimagepath)
 
+
         sharebutton.setOnClickListener {
 
 
+
+            val intent = Intent(Intent.ACTION_SEND).apply {
+
+                type = "image/*"
+                val bitmap = BitmapFactory.decodeResource(resources,itemimagepath )
+                //  val path = MediaStore.Images.Media.insertImage(contentResolver , bitmap , "$id"  , "$id2" )
+                val path = MediaStore.Images.Media.insertImage(requireContext().contentResolver , bitmap , "$itemname"  , "$itemDescrption" )
+                val uri = Uri.parse(path)
+                putExtra(Intent.EXTRA_STREAM , uri)
+                putExtra(Intent.EXTRA_TEXT , "$itemname")
+
+
+
+
+            }
+            startActivity(intent)
 
         }
 
